@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Livros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            background: linear-gradient(135deg, #4e73df, #1cc88a);
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* Formulário */
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Lista de livros */
+        .lista-livros {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .livro {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .livro:last-child {
+            border-bottom: none;
+        }
+
+        .titulo {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .autor, .ano {
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="lista-livros">
+        <h2>Lista de Livros</h2>
+
+        <div class="livro">
+            <div class="titulo">Coraline</div>
+            <div class="autor">Autor: Neil Gaiman</div>
+            <div class="ano">Ano: 2002</div>
+        </div>
+
+        <div class="livro">
+            <div class="titulo">O Pequeno Príncipe</div>
+            <div class="autor">Autor: Antoine de Saint-Exupéry</div>
+            <div class="ano">Ano: 1943</div>
+        </div>
+
+        <div class="livro">
+            <div class="titulo">Crime e Castigo</div>
+            <div class="autor">Autor: Fiódor Dostoiévski</div>
+            <div class="ano">Ano: 1866</div>
+        </div>
+
+    </div>
+
+</body>
+</html>
