@@ -15,12 +15,26 @@ def home():
 
 @app.route('/games')
 def games():
-    return render_template('games.html')
-
+    # Criando variáveis para passar as informações de um jogo
+    titulo = "Silk Song"
+    ano = 2025
+    genero = "Metroidvania"
+    
+    # Criando Vetor (Lista)
+    jogadores = ['Eduardo','Carlinhos','Breno','Marcele']
+    
+    return render_template('games.html',
+                           titulo=titulo,
+                           ano=ano,
+                           genero=genero,
+                           jogadores=jogadores)
+# {{ nome da variável }} -> Jinja2 permite exibir variáveis Python no HTML (um pacote do Flask)
 
 @app.route('/consoles')
 def consoles():
-    return render_template('consoles.html')
+    consoles = ['Playstation 4','Playstation 3','Xbox 360','Xbox One','Nintendo Switch']
+    return render_template('consoles.html',
+                           consoles=consoles)
 
 
 # Iniciando o servidor web
