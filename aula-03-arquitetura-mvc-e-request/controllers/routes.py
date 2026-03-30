@@ -1,8 +1,9 @@
-from flask import render_template
+from flask import render_template, request, redirect, url_for
 
 # Criando a função para receber o Flask (app)
 def init_app(app):
-    # A partir daqui virão as rotas
+    # Simulando um Banco de Dados
+    listaGames = [{"titulo": "CS-GO", "ano": 2012, "genero": "FPS"}]
 
     # Criando a rota principal do site
     @app.route('/')
@@ -43,3 +44,14 @@ def init_app(app):
         consoles = ['Playstation 4','Playstation 3','Xbox 360','Xbox One','Nintendo Switch']
         return render_template('consoles.html',
                             consoles=consoles)
+    
+    @app.route('/cadgames', methods=['GET', 'POST'])
+    def cadgames():
+        if request.method == 'POST':
+            listaGames.append({'titulo': request.form.get('titulo'),
+                               'ano': request.form.get('ano'),
+                               'genero': request.form.get('genero')})
+            # o metodo append adiciona valores a lista
+            return redirect(url_for('cadgames'))
+        return render_template('cadgames.html',
+                               listaGames=listaGames)
