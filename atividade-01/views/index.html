@@ -1,77 +1,19 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca Online</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #4e73df, #1cc88a);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+<!-- Importando o template base -->
+{% extends 'base.html' %}
 
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            width: 350px;
-        }
+{% block content %}
 
-        h1 {
-            margin-bottom: 10px;
-            color: #333;
-        }
+<main>
+    <h2>Bem-vindo ao nosso site de gerenciamento de livros!</h2>
+    <p>
+         Este espaço foi criado para facilitar o registro, a organização e a consulta de obras literárias de forma simples e prática. Aqui, você pode cadastrar novos livros informando título, autor e ano de publicação, além de visualizar uma lista atualizada com todos os itens adicionados.
 
-        p {
-            color: #666;
-            margin-bottom: 30px;
-        }
+        Nosso objetivo é oferecer uma experiência intuitiva e acessível, ideal tanto para uso pessoal quanto para fins de aprendizado em desenvolvimento web. A plataforma demonstra, de forma clara, como é possível integrar formulários, processamento de dados e exibição dinâmica de informações utilizando tecnologias como Python e Flask.
 
-        .btn {
-            display: block;
-            text-decoration: none;
-            margin: 10px 0;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+        Explore as funcionalidades, adicione seus livros favoritos e aproveite para conhecer um pouco mais sobre como aplicações web podem ser construídas de maneira eficiente e organizada.
 
-        .form-btn {
-            background-color: #4e73df;
-            color: white;
-        }
+    </p>
+    <hr>
+</main>
 
-        .form-btn:hover {
-            background-color: #2e59d9;
-        }
-
-        .lista-btn {
-            background-color: #1cc88a;
-            color: white;
-        }
-
-        .lista-btn:hover {
-            background-color: #17a673;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-    <h1>📚 Biblioteca Online</h1>
-    <p>Seja Bem-vindo! Escolha uma das opções abaixo:</p>
-
-    <a href="form" class="btn form-btn">Cadastrar um Livro</a>
-    <a href="lista" class="btn lista-btn">Ver Lista de Livros</a>
-</div>
-    
-</body>
-</html>
+{% endblock content %}
