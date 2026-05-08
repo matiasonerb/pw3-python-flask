@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+<main>
     <details>
-        <summary>[ Cadastrar um novo jogo ]</summary>
+        <summary>Cadastrar um novo jogo</summary>
         <div class="col-md-4">
-            <form action="{{url_for('estoque_jogos')}}" method="POST">
+            <form action="{{url_for('estoque_jogos')}}" method="post">
                 <input type="text" name="titulo" placeholder="Título" class="form-control" required>
                 <input type="number" name="ano" placeholder="Ano" class="form-control" required>
                 <input type="text" name="genero" placeholder="Gênero" class="form-control" required>
@@ -18,7 +18,7 @@
             </form>
         </div>
     </details>
-
+<hr>
     <h2>Controle de Estoque</h2>
     <table class="table table-bordered table-hover">
         <thead class="table-dark">
@@ -38,10 +38,11 @@
                 <td>{{game.ano}}</td>
                 <td>{{game.genero}}</td>
                 <td>{{game.plataforma}}</td>
-                <td>{{game.preco}}</td>
+                <td>R${{game.preco}}</td>
                 <td>{{game.quantidade}}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+</main>
 {% endblock content %}
