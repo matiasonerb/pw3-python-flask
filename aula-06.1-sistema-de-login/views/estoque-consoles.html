@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+    <details>
+        <summary>Cadastrar um novo console</summary>
+        <div class="col-md-4">
+            <form action="{{url_for('estoque_consoles')}}" method="POST">
+                <input type="text" name="nome" placeholder="Nome" class="form-control" required>
+                <input type="number" name="ano" placeholder="Ano" class="form-control" required>
+                <input type="text" name="fabricante" placeholder="Fabricante" class="form-control" required>
+                <input type="number" name="preco" placeholder="Preço" class="form-control" required>
+                <input type="number" name="quantidade" placeholder="Quantidade" class="form-control" required>
+                <br>
+                <input type="submit" value="Cadastrar" class="btn btn-success">
+                <input type="reset" value="Limpar" class="btn btn-outline-danger">
+            </form> 
+        </div>
+    </details>
+    <hr>
+    <h2>Controle de Estoque</h2>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Nome</th>
+                <th>Ano</th>
+                <th>Fabricante</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th colspan="2">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for console in consoles %}
+            <tr>
+                <td>{{console.nome}}</td>
+                <td>{{console.ano}}</td>
+                <td>{{console.fabricante}}</td>
+                <td>R${{console.preco}}</td>
+                <td>{{console.quantidade}}</td>
+                <td>
+                    <a href="" class="btn btn-warning">
+                        Editar
+                    </a>
+                </td>
+                <td>
+                    <a href="{{url_for('estoque_consoles', id=console.id)}}" 
+                    class="btn btn-danger"
+                    onclick="return confirm('Deseja mesmo excluir o jogo?')">
+                        Deletar
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+{% endblock content %}
