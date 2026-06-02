@@ -1,6 +1,7 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from models.database import Game, Console, db, Usuario
 from werkzeug.security import generate_password_hash
+from markupsafe import Markup
 
 # Criando a função para receber o Flask (app)
 def init_app(app):
@@ -143,19 +144,29 @@ def init_app(app):
             return redirect(url_for('estoque_jogos'))
         return render_template('editar-jogos.html', game=game)
     
-    @app.route('/cadastro', methods=['GET', 'POST'])
+    @app.route('/cadastro', methods=['GET','POST'])
     def cadastro():
-        # Verificando se a requisição é POST
         if request.method == 'POST':
             email = request.form['email']
             senha = request.form['senha']
+            
+            usuario = Usuario.query.filter_by(email=email).first()
+            if usuario:
+                msg = Markup("usuario já cadastrado. Faça o <a href='/login'>login</a>")
+                flash(msg, 'danger')
+                return redirect(url_for('cadastro'))
+            
             senha_criptografada = generate_password_hash(senha, method='scrypt')
+            
             novo_usuario = Usuario(email=email, senha=senha_criptografada)
+            
             db.session.add(novo_usuario)
             db.session.commit()
-            return redirect(url_for('login'))
+            msgCad = Markup("Cadastro realizado com sucesso!. Faça o <a href='/login'>login</a>")
+            flash(msgCad, 'success')
+            return redirect(url_for('cadastro'))
         return render_template('cadastro.html')
     
     @app.route('/login', methods=['GET', 'POST'])
     def login():
-        return "Bem-vindo a página de login!"
+        return render_template('login.html')

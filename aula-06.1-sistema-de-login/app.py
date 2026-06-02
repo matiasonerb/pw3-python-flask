@@ -2,7 +2,7 @@
 from flask import Flask, render_template
 from controllers import routes
 import pymysql
-from models.database import db, Game
+from models.database import db, Game, Console
 
 # Carregando o Flask em uma variável
 app = Flask(__name__, template_folder='views')
@@ -11,6 +11,8 @@ app = Flask(__name__, template_folder='views')
 DB_NAME = 'thegames'
 app.config['DATABASE_NAME'] = DB_NAME
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://root@localhost/{DB_NAME}'
+
+app.config['SECRET_KEY'] = 'meusegredo'
 
 # Enviando a variavel app para as rotas
 routes.init_app(app)
