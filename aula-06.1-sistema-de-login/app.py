@@ -14,6 +14,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://root@localhost/{DB_NAME}'
 
 app.config['SECRET_KEY'] = 'meusegredo'
 
+app.config['PERMANENT_SESSION_LIFETIME'] = 3600 # 1 hora
+
 # Enviando a variavel app para as rotas
 routes.init_app(app)
 

@@ -2,7 +2,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+ {% with massages = get_flashed_messages(with_categories=true) %}
 
+{% for category, message in massages %}
+    <div class="alert alert-{{ category }}">
+        {{message}}
+
+    </div>
+{% endfor %}
+{% endwith %}
 <main>
     <h1>Bem-vindo ao The Games!</h1>
     <h3>Seu site favorito de jogos!</h3>

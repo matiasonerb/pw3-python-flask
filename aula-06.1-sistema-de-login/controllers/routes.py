@@ -1,6 +1,6 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, session
 from models.database import Game, Console, db, Usuario
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from markupsafe import Markup
 
 # Criando a função para receber o Flask (app)
@@ -169,4 +169,25 @@ def init_app(app):
     
     @app.route('/login', methods=['GET', 'POST'])
     def login():
+        if request.method == "POST":
+            email = request.form['email']
+            senha = request.form['senha']
+            # Buscando o usuario no banco
+            usuario = Usuario.query.filter_by(email=email).first()
+            # Se existir
+            if usuario:
+                if check_password_hash(usuario.senha, senha):
+                    # Criando a sessão
+                    session['usuario_id'] = usuario.id
+                    session['usuario_email'] = usuario.email
+                    
+                    msgLogin = "Você foi autenticado com sucesso! Bem vindo!"
+                    flash(msgLogin, 'success')
+                    return redirect(url_for('home'))
+                else:
+                    flash('Falha no login. Verifique os dados e tente novamente!', 'danger')
+                    return redirect(url_for('login'))
+            else:
+                flash('O usuário informado não existe!', 'danger')
+                return redirect(url_for('login'))
         return render_template('login.html')

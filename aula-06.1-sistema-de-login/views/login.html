@@ -1,36 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
-<!-- {% with massages = get_flashed_messages(with_categories=true) %}
+<!-- PÁGINA DE LOGIN -->
+ {% with massages = get_flashed_messages(with_categories=true) %}
 
-{% for category, message in massages %} -->
+{% for category, message in massages %}
     <div class="alert alert-{{ category }}">
         {{message}}
 
     </div>
 {% endfor %}
 {% endwith %}
-<main>
+ <main>
 <div class="container">
-    <div class="card mt4">
+    <div class="card mt-4">
         <div class="card-header">
-            <h2>Login do Usuario</h2>
+            <h2>Login do usuário</h2>
         </div>
-        <div class="card-boby m-auto">
+        <div class="card-body">
+            <!-- FORMULÁRIO -->
             <form action="{{url_for('login')}}" method="POST">
-                <label for="">E-mail</label>
-                <input type="email" name="email" placeholder="insira seu email" class="form-control">
-                <label for="">Senha</label>
-                <input type="senha" name="senha" placeholder="insira sua senha" class="form-control">
-                <br>
+                <label>E-mail</label>
+                <input type="email" name="email" placeholder="Insira seu e-mail" class="form-control" required>
+                <label>Senha</label>
+                <input type="password" name="senha" placeholder="Insira sua senha" class="form-control" required>
+                <!-- BOTÃO -->
+                 <br>
                 <button type="submit" class="btn btn-danger btn-block">Entrar</button>
-
             </form>
             <hr>
-            <h6>Não possui conta? <a href="{{url_for('cadastro')}}">Cadastre-se!</a></h6>
-
+            <!-- LINK PARA SE CADASTRAR -->
+             <h6>Não possui conta? <a href="{{url_for('cadastro')}}">Cadastre-se!</a></h6>
         </div>
     </div>
 </div>
 </main>
-
 {% endblock content %}
