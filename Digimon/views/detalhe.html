@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ digimon.name }} - Dados do Arquivo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <main class="detalhe-container">
+        <div class="card-detalhe">
+            
+            <div class="img-box">
+                <img src="{{ digimon.img }}" alt="{{ digimon.name }}">
+            </div>
+
+            <div class="info-box">
+                <h2>{{ digimon.name }}</h2>
+                <p class="description">{{ digimon.description }}</p>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <label>Nível</label>
+                        <span>{{ digimon.level }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <label>Atributo</label>
+                        <span>{{ digimon.attribute }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <label>Tipo</label>
+                        <span>{{ digimon.type }}</span>
+                    </div>
+                </div>
+
+                {% if digimon.skills %}
+                    <label style="font-family: 'Orbitron'; font-size:0.8rem; color: var(--text-muted);">HABILIDADES TÁTICAS</label>
+                    <ul class="skills-list">
+                        {% for skill in digimon.skills %}
+                            <li>{{ skill }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <a href="/" class="btn-voltar">← RETORNAR À BASE</a>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digidex</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>DIGIDEX DATABASE</h1>
+        <form action="/" method="GET">
+            <input type="text" name="busca" placeholder="Buscar Digimon" value="{{ busca }}">
+            <button type="submit">BUSCAR</button>
+            {% if busca %}
+                <a href="/" class="btn-limpar">LIMPAR</a>
+            {% endif %}
+        </form>
+    </header>
+
+    <main class="grid-container">
+        {% for digimon in digimons %}
+            <div class="card">
+                <img src="{{ digimon.img }}" alt="{{ digimon.name }}" loading="lazy">
+                <h3>{{ digimon.name }}</h3>
+                <span class="level-tag">{{ digimon.level }}</span>
+                <div>
+                    <a href="/digimon/{{ digimon.name }}" class="btn-detalhes">ACESSAR DADOS</a>
+                </div>
+            </div>
+        {% else %}
+            <p style="grid-column: 1/-1; text-align: center;">Nenhum registro encontrado no Banco Digital.</p>
+        {% endfor %}
+    </main>
+
+</body>
+</html>
