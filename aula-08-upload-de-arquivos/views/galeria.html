@@ -10,8 +10,11 @@
     </div>
 {% endfor %}
 {% endwith %}
-
+{% for imagem in imagens %}
+    <img src="/static/uploads/{{ imagem.filename }}"><br>
+{% endfor %}
 <h2 style="text-align: center;">Galeria</h2>
+\{{ imagens }}
 <div class="conteiner col-6">
     <div class="card mt-4">
         <div class="card-body">

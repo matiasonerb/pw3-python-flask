@@ -46,3 +46,10 @@ class Usuario(db.Model):
     def __init__(self, email, senha):
         self.email = email
         self.senha = senha
+
+class Imagem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    filename = db.Column(db.String(255), unique=True, nullable=False)
+
+    def __init__(self, filename):
+        self.filename = filename

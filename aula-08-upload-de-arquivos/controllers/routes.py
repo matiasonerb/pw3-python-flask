@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, flash, session
-from models.database import Game, Console, db, Usuario
+from models.database import Game, Console, db, Usuario, Imagem
 from werkzeug.security import generate_password_hash, check_password_hash
 from markupsafe import Markup
 
@@ -204,7 +204,7 @@ def init_app(app):
         return render_template('apigames.html',
         listaJogos=listaJogos)
 
-    if id:
+        if id:
             jogoInfo = []
             for jogo in listaJogos:
                 if jogo['id'] == id:
@@ -221,10 +221,11 @@ def init_app(app):
     
     @app.route('/galeria', methods=['GET','POST'])
     def galeria():
-        
+        imagens = Imagem.query.all()
         FILE_TYPES = set(['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'])
         
         def arquivos_permitidos(filename):
+            
             return '.' in filename and filename.rsplit('.',1)[1].lower() in FILE_TYPES
         
         
@@ -236,8 +237,11 @@ def init_app(app):
                 return redirect(request.url)
             
             filename = str(uuid.uuid4())
+            imagem = Imagem(filename)
+            db.session.add(imagem)
+            db.session.commit()
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             flash("imagem recebida com sucesso!", 'success')
             return redirect(url_for('galeria'))
         
-        return render_template('galeria.html')
+        return render_template('galeria.html', imagens=imagens)
